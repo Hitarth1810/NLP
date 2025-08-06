@@ -13,12 +13,12 @@ Ellipses (...)
 
 Project Files-
 
-word_tokenizer_Regex.py – Tokenizes Gujarati text into individual words.
-sentence_tokenizer_Regex.py – Segments text into sentences with proper punctuation handling.
-gu_words.txt – Output file containing tokenized words (one per line).
-gu_sentences.txt – Output file containing segmented sentences (one per line).
-gu_words_metrics.txt – Evaluation metrics for the word tokenizer.
-gu_sentences_metrics.txt – Evaluation metrics for the sentence tokenizer.
+1. word_tokenizer_Regex.py – Tokenizes Gujarati text into individual words.
+2. sentence_tokenizer_Regex.py – Segments text into sentences with proper punctuation handling.
+3. gu_words.txt – Output file containing tokenized words (one per line).
+4. gu_sentences.txt – Output file containing segmented sentences (one per line).
+5. gu_words_metrics.txt – Evaluation metrics for the word tokenizer.
+6. gu_sentences_metrics.txt – Evaluation metrics for the sentence tokenizer.
 
 
 How It Works:
@@ -51,11 +51,11 @@ ii. gu_sentences_metrics.txt – Sentence-level statistics including sentence co
 
 Features & Highlights:
 
-Gujarati Script Awareness – Correctly handles matras and diacritic marks.
-Edge Case Protection – Prevents accidental splitting of important text elements.
-Custom Regex Patterns – Designed specifically for Gujarati text structure.
-Post-processing Merging – Eliminates unnatural short sentence fragments.
-Metrics Reporting – Helps evaluate tokenizer accuracy and performance.
+1. Gujarati Script Awareness – Correctly handles matras and diacritic marks.
+2. Edge Case Protection – Prevents accidental splitting of important text elements.
+3. Custom Regex Patterns – Designed specifically for Gujarati text structure.
+4. Post-processing Merging – Eliminates unnatural short sentence fragments.
+5. Metrics Reporting – Helps evaluate tokenizer accuracy and performance.
 
 
 Usage-
