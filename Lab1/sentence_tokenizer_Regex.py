@@ -3,7 +3,7 @@ import re
 def gujarati_sentence_tokenizer(text):
     # Patterns to protect
     url_pattern = r'https?://[^\s]+'
-    email_pattern = r'[\w\.-]+@[\w\.-]+\.\w+'
+    email_pattern = r'[\w\.-]+@(\w+\.)+(com|in|org)|'
     date_pattern = r'\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{1,2}\s*[જાન્યુઆરી|ફેબ્રુઆરી|માર્ચ|એપ્રિલ|મે|જૂન|જુલાઈ|ઑગસ્ટ|સપ્ટેમ્બર|ઑક્ટોબર|નવેમ્બર|ડિસેમ્બર]+\s*\d{2,4}'
     
     # Protect URLs, emails, dates, ellipsis by replacing them with placeholders
@@ -78,7 +78,8 @@ def gujarati_sentence_tokenizer(text):
 
 # Example usage:
 if __name__ == "__main__":
-    with open("gu.txt", encoding="utf-8") as f:
+    with open(r"Lab1\gu.txt", encoding="utf-8") as f:
+
         text = f.read()
     sentences = gujarati_sentence_tokenizer(text)
     # Write sentences to a new file, each on a new line

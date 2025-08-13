@@ -3,7 +3,7 @@ import re
 def gujarati_word_tokenizer(text):
     # Patterns for URLs, emails, dates, numbers with commas/periods
     url_pattern = r'https?://[^\s]+'
-    email_pattern = r'[\w\.-]+@[\w\.-]+\.\w+'
+    email_pattern = r'[\w\.-]+@(\w+\.)+(com|in|org)|'
     date_pattern = r'\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{1,2}\s*[જાન્યુઆરી|ફેબ્રુઆરી|માર્ચ|એપ્રિલ|મે|જૂન|જુલાઈ|ઑગસ્ટ|સપ્ટેમ્બર|ઑક્ટોબર|નવેમ્બર|ડિસેમ્બર]+\s*\d{2,4}'
     # Numbers with commas or periods (English and Gujarati)
     num_pattern = r'(?:[\d\u0AE6-\u0AEF]+(?:[\.,][\d\u0AE6-\u0AEF]+)+)'
@@ -32,7 +32,7 @@ def gujarati_word_tokenizer(text):
     return flat_words
 
 if __name__ == "__main__":
-    with open("gu.txt", encoding="utf-8") as f:
+    with open("Lab1\gu.txt", encoding="utf-8") as f:
         text = f.read()
     words = gujarati_word_tokenizer(text)
     with open("gu_words.txt", "w", encoding="utf-8") as out:
