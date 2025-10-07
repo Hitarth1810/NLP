@@ -1,0 +1,9 @@
+Lab1/tokenized_data.txt
+Lab5/train.txt
+Lab5/test.txt
+Lab5/val.txt
+Lab5/bigrams_gt.tsv
+Lab5/trigrams_gt.tsv
+Lab5/quadgrams_gt.tsv
+Lab5/unigrams_gt.tsv
+__pycache__
