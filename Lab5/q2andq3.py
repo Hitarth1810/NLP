@@ -24,8 +24,6 @@ def stream_tokens(path: Path):
                     yield t
 
 def good_turing_probs(counts: Dict[Tuple[str, ...], int], n: int, vocab_size: int) -> Tuple[Dict[Tuple[str, ...], float], float]:
-    # Compute Nc: Nc[c] = number of n-grams with count c
-    # (("new", "york"), 20) aavu kaik return thay in kv as it is format of counts
     Nc = Counter(counts.values())
     N = sum(counts.values())
     N1 = Nc[1]

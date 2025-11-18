@@ -18,8 +18,9 @@ for i, row in enumerate(dataset):
     text = row["text"].strip()
     if text:
         sentences.append(text)
-    if i >= 10000:  # Adjust this for larger training data
+    if i >= 10000:
         break
+
 print(f"Loaded {len(sentences)} sentences")
 
 # -------------------------------
@@ -30,31 +31,54 @@ def tokenize(text):
 
 tokenized_sentences = [tokenize(s) for s in sentences]
 
-# ✅ Save all tokenized sentences to a text file
-output_file = "tokenized_sentences.txt"
-with open(output_file, "w", encoding="utf-8") as f:
-    for tokens in tokenized_sentences:
-        f.write(" ".join(tokens) + "\n")  # join tokens with spaces
-
-print(f"\n✅ Saved {len(tokenized_sentences)} tokenized sentences to '{output_file}'")
-
-# Optional: show a few examples
-print("\nSample tokenized sentences:")
-for i, tokens in enumerate(tokenized_sentences[:5]):
-    print(f"{i+1}: {tokens}")
+print("Sample tokenized:", tokenized_sentences[:3])
 
 # -------------------------------
-# 3. Build N-grams
+# 3. Train / Val / Test split (Correct)
+# -------------------------------
+N = len(tokenized_sentences)
+train_end = int(0.8 * N)
+val_end = int(0.9 * N)
+
+train_tokens = tokenized_sentences[:train_end]
+val_tokens   = tokenized_sentences[train_end:val_end]
+test_tokens  = tokenized_sentences[val_end:]
+
+print("Train:", len(train_tokens))
+print("Val:", len(val_tokens))
+print("Test:", len(test_tokens))
+
+# -------------------------------
+# 4. Save to file
+# -------------------------------
+with open("tokenized_sentences.txt", "w", encoding="utf-8") as f:
+    for sent in tokenized_sentences:
+        f.write(" ".join(sent) + "\n")
+
+print("Saved tokenized sentences.")
+
+# -------------------------------
+# 5. Build n-grams (correct sentence-level)
 # -------------------------------
 def get_ngrams(tokens, n):
     return [tuple(tokens[i:i+n]) for i in range(len(tokens)-n+1)]
 
-unigram_counts = Counter(get_ngrams(all_tokens, 1))
-bigram_counts = Counter(get_ngrams(all_tokens, 2))
-trigram_counts = Counter(get_ngrams(all_tokens, 3))
-quadgram_counts = Counter(get_ngrams(all_tokens, 4))
+# Build sentence-safe n-grams
+unigram_counts = Counter()
+bigram_counts = Counter()
+trigram_counts = Counter()
+quadgram_counts = Counter()
 
-print(f"Unigrams: {len(unigram_counts)}")
-print(f"Bigrams: {len(bigram_counts)}")
-print(f"Trigrams: {len(trigram_counts)}")
-print(f"Quadgrams: {len(quadgram_counts)}")
+for sent in tokenized_sentences:
+    unigram_counts.update(get_ngrams(sent, 1))
+    bigram_counts.update(get_ngrams(sent, 2))
+    trigram_counts.update(get_ngrams(sent, 3))
+    quadgram_counts.update(get_ngrams(sent, 4))
+
+# -------------------------------
+# Summary
+# -------------------------------
+print(f"Unigrams:  {len(unigram_counts)}")
+print(f"Bigrams:   {len(bigram_counts)}")
+print(f"Trigrams:  {len(trigram_counts)}")
+print(f"4-grams:   {len(quadgram_counts)}")

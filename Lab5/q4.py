@@ -53,7 +53,7 @@ def deleted_interpolation_lambdas(train_counts, heldout_counts, vocab):
     best_lambdas = None
     best_logprob = float('-inf')
     # Coarse grid: step 0.1
-    steps = [i/10 for i in range(11)]
+    steps = [i/10 for i in range(9)]
     for l4 in steps:
         for l3 in steps:
             for l2 in steps:
